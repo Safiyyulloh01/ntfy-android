@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="md_theme_primary">#338574</color>
-    <color name="md_theme_onPrimary">#FFFFFF</color>
-    <color name="md_theme_primaryContainer">#A0F2DD</color>
-    <color name="md_theme_onPrimaryContainer">#005144</color>
-    <color name="md_theme_secondary">#4B635C</color>
+    <color name="md_theme_primary">#A7D0DD</color>
+    <color name="md_theme_onPrimary">#003640</color>
+    <color name="md_theme_primaryContainer">#B6E6F5</color>
+    <color name="md_theme_onPrimaryContainer">#001F26</color>
+    <color name="md_theme_secondary">#4B9BB0</color>
     <color name="md_theme_onSecondary">#FFFFFF</color>
-    <color name="md_theme_secondaryContainer">#CDE8DF</color>
-    <color name="md_theme_onSecondaryContainer">#334B45</color>
-    <color name="md_theme_tertiary">#436278</color>
+    <color name="md_theme_secondaryContainer">#BCEAFB</color>
+    <color name="md_theme_onSecondaryContainer">#002029</color>
+    <color name="md_theme_tertiary">#1E7A8A</color>
     <color name="md_theme_onTertiary">#FFFFFF</color>
-    <color name="md_theme_tertiaryContainer">#C8E6FF</color>
-    <color name="md_theme_onTertiaryContainer">#2A4A5F</color>
+    <color name="md_theme_tertiaryContainer">#A9EDFF</color>
+    <color name="md_theme_onTertiaryContainer">#003640</color>
     <color name="md_theme_error">#BA1A1A</color>
     <color name="md_theme_onError">#FFFFFF</color>
     <color name="md_theme_errorContainer">#FFDAD6</color>
     <color name="md_theme_onErrorContainer">#93000A</color>
-    <color name="md_theme_background">#FFFFFF</color>
-    <color name="md_theme_onBackground">#171D1B</color>
-    <color name="md_theme_surface">#FFFFFF</color>
-    <color name="md_theme_onSurface">#171D1B</color>
-    <color name="md_theme_surfaceVariant">#E0E0E0</color>
-    <color name="md_theme_onSurfaceVariant">#3F4946</color>
-    <color name="md_theme_outline">#6F7976</color>
-    <color name="md_theme_outlineVariant">#C0C0C0</color>
+    <color name="md_theme_background">#0F172A</color>
+    <color name="md_theme_onBackground">#E2E8F0</color>
+    <color name="md_theme_surface">#0F172A</color>
+    <color name="md_theme_onSurface">#E2E8F0</color>
+    <color name="md_theme_surfaceVariant">#1E293B</color>
+    <color name="md_theme_onSurfaceVariant">#94A3B8</color>
+    <color name="md_theme_outline">#475569</color>
+    <color name="md_theme_outlineVariant">#1E293B</color>
     <color name="md_theme_scrim">#000000</color>
-    <color name="md_theme_inverseSurface">#2B3230</color>
-    <color name="md_theme_inverseOnSurface">#F0F0F0</color>
-    <color name="md_theme_inversePrimary">#84D6C2</color>
+    <color name="md_theme_inverseSurface">#E2E8F0</color>
+    <color name="md_theme_inverseOnSurface">#0F172A</color>
+    <color name="md_theme_inversePrimary">#00647A</color>
     <color name="md_theme_primaryFixed">#A0F2DD</color>
     <color name="md_theme_onPrimaryFixed">#00201A</color>
     <color name="md_theme_primaryFixedDim">#84D6C2</color>
@@ -142,8 +142,8 @@
     <color name="md_theme_surfaceContainerHigh_highContrast">#CFD6D2</color>
     <color name="md_theme_surfaceContainerHighest_highContrast">#C1C8C5</color>
 
-    <color name="action_bar">#338574</color> <!-- md_theme_primary (light) -->
-    <color name="detail_activity_background">#EEEEEE</color> <!-- Light gray for detail activity in light mode -->
+    <color name="action_bar">#A7D0DD</color> <!-- md_theme_primary -->
+    <color name="detail_activity_background">#0F172A</color> <!-- Dark slate background -->
 
     <!-- Chip colors -->
     <color name="chip_background_color">#E8E8E8</color> <!-- Light gray background -->
