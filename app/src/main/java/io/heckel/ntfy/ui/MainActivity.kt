@@ -599,12 +599,7 @@ class MainActivity : AppCompatActivity(), AddFragment.SubscribeListener, Notific
         val mutedUntilSeconds = repository.getGlobalMutedUntil()
         runOnUiThread {
             // Show/hide menu items based on build config
-            val rateAppItem = menu.findItem(R.id.main_menu_rate)
-            val docsItem = menu.findItem(R.id.main_menu_docs)
-            val reportBugItem = menu.findItem(R.id.main_menu_report_bug)
-            rateAppItem.isVisible = BuildConfig.RATE_APP_AVAILABLE
-            docsItem.isVisible = BuildConfig.PAYMENT_LINKS_AVAILABLE // Google Payments Policy, see https://github.com/binwiederhier/ntfy/issues/1463
-            reportBugItem.isVisible = BuildConfig.PAYMENT_LINKS_AVAILABLE // Google Payments Policy, see https://github.com/binwiederhier/ntfy/issues/1463
+            // Notifications menu items
 
             // Pause notification icons
             val notificationsEnabledItem = menu.findItem(R.id.main_menu_notifications_enabled)
@@ -655,7 +650,9 @@ class MainActivity : AppCompatActivity(), AddFragment.SubscribeListener, Notific
             }
             R.id.main_menu_clear_all -> {
                 lifecycleScope.launch(Dispatchers.IO) {
-                    repository.clearAllNotifications()
+                    repository.getSubscriptions().forEach { sub ->
+                        repository.markAllAsDeleted(sub.id)
+                    }
                     runOnUiThread { redrawList() }
                 }
                 true
