@@ -170,9 +170,7 @@ class MainActivity : AppCompatActivity(), AddFragment.SubscribeListener, Notific
 
         // Floating action button ("+")
         fab = findViewById(R.id.fab)
-        fab.setOnClickListener {
-            onSubscribeButtonClick()
-        }
+        fab.visibility = View.GONE // Disable adding custom topics
         
         // Add bottom padding to FAB to account for navigation bar
         ViewCompat.setOnApplyWindowInsetsListener(fab) { view, insets ->
@@ -384,16 +382,39 @@ class MainActivity : AppCompatActivity(), AddFragment.SubscribeListener, Notific
         // Permissions
         maybeRequestNotificationPermission()
 
+        // Auto-subscribe to insym notifications on first launch
+        lifecycleScope.launch(Dispatchers.IO) {
+            val existing = repository.getSubscriptions().find { it.topic == "livebot_insym" }
+            if (existing == null) {
+                onSubscribe("livebot_insym", appBaseUrl!!, true)
+            }
+        }
+
         // FIXME 2026-05-04: Remove this migration after 1 month
         migrateSubscriptionIconsFromCache()
     }
 
     private fun maybeRequestNotificationPermission() {
         // Android 13 (SDK 33) requires that we ask for permission to post notifications
-        // https://developer.android.com/develop/ui/views/notifications/notification-permission
-
+        // Force the user to accept it
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 0)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 0 && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_DENIED) {
+            // Permission denied — show explanation dialog and close
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Notification permission required")
+                .setMessage("NotifySym needs notification permission to deliver Insym's live notifications. Please enable it in Settings.")
+                .setPositiveButton("Open Settings") { _, _ ->
+                    startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, "package:$packageName".toUri()))
+                }
+                .setNegativeButton("Exit") { _, _ -> finish() }
+                .setCancelable(false)
+                .show()
         }
     }
 
