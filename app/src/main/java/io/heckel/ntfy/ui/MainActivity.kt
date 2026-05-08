@@ -632,28 +632,11 @@ class MainActivity : AppCompatActivity(), AddFragment.SubscribeListener, Notific
                 startActivity(Intent(this, SettingsActivity::class.java))
                 true
             }
-            R.id.main_menu_report_bug -> {
-                startActivity(
-                    Intent(Intent.ACTION_VIEW, getString(R.string.main_menu_report_bug_url).toUri())
-                )
-                true
-            }
-            R.id.main_menu_rate -> {
-                try {
-                    startActivity(
-                        Intent(Intent.ACTION_VIEW, "market://details?id=$packageName".toUri())
-                    )
-                } catch (_: ActivityNotFoundException) {
-                    startActivity(
-                        Intent(Intent.ACTION_VIEW, "https://play.google.com/store/apps/details?id=$packageName".toUri())
-                    )
+            R.id.main_menu_clear_all -> {
+                lifecycleScope.launch(Dispatchers.IO) {
+                    repository.clearAllNotifications()
+                    runOnUiThread { redrawList() }
                 }
-                true
-            }
-            R.id.main_menu_docs -> {
-                startActivity(
-                    Intent(Intent.ACTION_VIEW, getString(R.string.main_menu_docs_url).toUri())
-                )
                 true
             }
             else -> super.onOptionsItemSelected(item)
